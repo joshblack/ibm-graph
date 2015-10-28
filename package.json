@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "babel": "^5.8.29",
+    "fbjs": "^0.4.0",
     "invariant": "^2.1.2",
     "request": "^2.65.0"
   },

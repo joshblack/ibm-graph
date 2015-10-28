@@ -12,7 +12,7 @@ const IntervieweeVertex = {
     label: 'currentRole',
     multiplicity: m.OneToOne,
   }, {
-    label: 'previousRoles',
+    label: 'previousRole',
     multiplicity: m.OneToMany
   }],
   inEdges: [{
@@ -24,7 +24,9 @@ const IntervieweeVertex = {
   }]
 };
 
-export { IntervieweeVertex as input };
+const input = [IntervieweeVertex];
+
+export { input };
 
 const schema = {
   'edgeIndexes': [],
@@ -50,7 +52,7 @@ const schema = {
     {
       'directed': true,
       'multiplicity': 'ONE2MANY',
-      'name': 'previousRoles'
+      'name': 'previousRole'
     },
     {
       'directed': true,

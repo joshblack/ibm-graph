@@ -1,4 +1,5 @@
 import invariant from 'invariant';
+import areEqual from 'fbjs/lib/areEqual';
 import { types as t } from './types';
 import { cardinality as c } from './cardinality';
 import { multiplicity as m } from './multiplicity';
@@ -10,6 +11,12 @@ const initial = {
   edgeLabels: [],
   propertyKeys: []
 };
+
+const dedupe = (edges) => edges.reduce((acc, edge) => {
+  const duplicate = acc.some((oldEdge) => areEqual(oldEdge, edge));
+
+  return duplicate ? acc : acc.concat(edge);
+}, []);
 
 /**
  * Schema takes a collection of vertices and builds out an object that can be
@@ -69,7 +76,7 @@ export default function Schema(vertices) {
       vertexIndexes: [],
       vertexLabels: [...acc.vertexLabels, { name: label }],
       propertyKeys: [...acc.propertyKeys, ...propertyKeys],
-      edgeLabels: [...acc.edgeLabels, ...edgeLabels]
+      edgeLabels: dedupe([...acc.edgeLabels, ...edgeLabels])
     };
   }, initial);
 }
