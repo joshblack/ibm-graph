@@ -1,0 +1,21 @@
+{
+  "name": "gds-schema-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register",
+    "test:watch": "npm run test -- --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^5.8.29",
+    "invariant": "^2.1.2",
+    "request": "^2.65.0"
+  },
+  "devDependencies": {
+    "expect": "^1.12.2",
+    "mocha": "^2.3.3"
+  }
+}
