@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "./resources/start.sh",
     "test": "mocha --compilers js:babel/register",
     "test:watch": "npm run test -- --watch"
   },

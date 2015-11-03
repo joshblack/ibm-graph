@@ -10,7 +10,7 @@ const IntervieweeVertex = {
   },
   outEdges: [{
     label: 'currentRole',
-    multiplicity: m.ManyToMany // A user can wear multiple "hats"
+    multiplicity: m.ManyToMany
   }, {
     label: 'previousRole',
     multiplicity: m.ManyToMany
@@ -67,6 +67,6 @@ const schema = {
       name: 'previousRole'
     }
   ]
-}
+};
 
 export { schema as output };
