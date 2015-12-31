@@ -3,8 +3,16 @@
  * edges of this label, that is, a maximum number of edges between pairs of
  * vertices.
  *
- * See: http://s3.thinkaurelius.com/docs/titan/0.9.0-M2/schema.html
+ * See: http://s3.thinkaurelius.com/docs/titan/1.0.0/schema.html
+ *
+ * @flow
  */
+export type MultiplicityType = 'MULTI'
+  | 'SIMPLE'
+  | 'MANY2ONE'
+  | 'ONE2MANY'
+  | 'ONE2ONE';
+
 const multiplicity = {
 
   /**
@@ -14,7 +22,7 @@ const multiplicity = {
    *
    * @type {String}
    */
-  ManyToMany: 'MULTI',
+  Multi: 'MULTI',
 
   /**
    * Allows at most one edge of such label between any pair of vertices. In
