@@ -1,107 +1,124 @@
 /**
- * Basic types supported by Titan.
+ * Basic Data Types supported by Titan.
  *
- * See: http://s3.thinkaurelius.com/docs/titan/0.9.0-M2/schema.html
+ * See: http://s3.thinkaurelius.com/docs/titan/1.0.0/schema.html
+ *
+ * @flow
  */
-const types = {
+export type DataType = 'String'
+  | 'Character'
+  | 'Boolean'
+  | 'Byte'
+  | 'Short'
+  | 'Integer'
+  | 'Long'
+  | 'Double'
+  | 'Decimal'
+  | 'Precision'
+  | 'Date'
+  | 'Geoshape'
+  | 'UUID';
+
+
+const dataTypes = {
 
   /**
    * Character sequence
    *
    * @type {String}
    */
-  string: 'String',
+  'String': 'String',
 
   /**
    * Individual character
    *
    * @type {String}
    */
-  character: 'Character',
+  'Character': 'Character',
 
   /**
    * true or false
    *
    * @type {String}
    */
-  boolean: 'Boolean',
+  'Boolean': 'Boolean',
 
   /**
    * byte value
    *
    * @type {String}
    */
-  byte: 'Byte',
+  'Byte': 'Byte',
 
   /**
    * short value
    *
    * @type {String}
    */
-  short: 'Short',
+  'Short': 'Short',
 
   /**
    * integer value
    *
    * @type {String}
    */
-  integer: 'Integer',
+  'Integer': 'Integer',
 
   /**
    * long value
    *
    * @type {String}
    */
-  long: 'Long',
+  'Long': 'Long',
 
   /**
    * 4 byte floating point number
    *
    * @type {String}
    */
-  float: 'Float',
+  'Float': 'Float',
 
   /**
    * 8 byte floating point number
    *
    * @type {String}
    */
-  double: 'Double',
+  'Double': 'Double',
 
   /**
    * Number with 3 decimal digits
    *
    * @type {String}
    */
-  decimal: 'Decimal',
+  'Decimal': 'Decimal',
 
   /**
    * Number with 6 decimal digits
    *
    * @type {String}
    */
-  precision: 'Precision',
+  'Precision': 'Precision',
 
   /**
    * Date
    *
    * @type {String}
    */
-  date: 'Date',
+  'Date': 'Date',
 
   /**
    * Geographic shape like point, circle or box
    *
    * @type {String}
    */
-  geoshape: 'Geoshape',
+  'Geoshape': 'Geoshape',
 
   /**
    * UUID
    *
    * @type {String}
    */
-  UUID: 'UUID'
+  'UUID': 'UUID'
 };
 
-export { types };
+export { dataTypes };

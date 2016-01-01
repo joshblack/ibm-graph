@@ -1,9 +1,16 @@
+
 /**
  * Used to define the allowed cardinality of the values associated with the key
  * on any given vertex.
  *
- * See: http://s3.thinkaurelius.com/docs/titan/0.9.0-M2/schema.html
+ * See: http://s3.thinkaurelius.com/docs/titan/1.0.0/schema.html
+ *
+ * @flow
  */
+export type CardinalityType = 'SINGLE'
+  | 'LIST'
+  | 'SET';
+
 const cardinality = {
 
   /**
