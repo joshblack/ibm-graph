@@ -6,13 +6,14 @@
   "scripts": {
     "lint": "eslint src",
     "test": "f() { EXIT=0; npm run typecheck || EXIT=$?; NODE_ENV=test jest $@ || EXIT=$?; exit $EXIT; }; f",
-    "typecheck": "flow check src"
+    "typecheck": "flow check src",
+    "update-jest": "rm -rf node_modules/jest-cli/.haste_cache"
   },
   "author": "Josh Black <joshblack@us.ibm.com>",
   "license": "MIT",
   "dependencies": {
     "fbjs": "^0.6.0",
-    "invariant": "^2.1.2"
+    "invariant": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",

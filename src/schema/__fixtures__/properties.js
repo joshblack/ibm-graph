@@ -13,7 +13,7 @@ export const NameProperty = {
 
 export const TextProperty = {
   name: 'text',
-  type: t.string,
+  type: t.String,
   index: {
     name: 'textIndex',
     unique: false,

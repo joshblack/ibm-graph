@@ -1,23 +1,24 @@
-/* @flow */
-
 /**
  * Basic Data Types supported by Titan.
  *
  * See: http://s3.thinkaurelius.com/docs/titan/1.0.0/schema.html
+ *
+ * @flow
  */
-// type DataType = 'Baz'
-  // | 'Character'
-  // | 'Boolean'
-  // | 'Byte'
-  // | 'Short'
-  // | 'Integer'
-  // | 'Long'
-  // | 'Double'
-  // | 'Decimal'
-  // | 'Precision'
-  // | 'Date'
-  // | 'Geoshape'
-  // | 'UUID';
+export type DataType = 'String'
+  | 'Character'
+  | 'Boolean'
+  | 'Byte'
+  | 'Short'
+  | 'Integer'
+  | 'Long'
+  | 'Double'
+  | 'Decimal'
+  | 'Precision'
+  | 'Date'
+  | 'Geoshape'
+  | 'UUID';
+
 
 const dataTypes = {
 
