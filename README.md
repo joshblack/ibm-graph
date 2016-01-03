@@ -1,3 +1,7 @@
+# Graph Data Store
+
+[![Build Status](https://travis-ci.org/joshblack/cds-graph.svg?branch=master)](https://travis-ci.org/joshblack/cds-graph)
+
 This repo holds an implementation of various modules used for JavaScript development with Graph Data Store. Namely, this repo includes a way to define a Schema, and Query the Graph Data Store service. In addition, this module exposes:
 
 - `types`: a map containing all basic types supported by titan, useful for defining fields on a Schema
