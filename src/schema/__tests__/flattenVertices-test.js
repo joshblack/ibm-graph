@@ -2,24 +2,111 @@ import { flattenVertices } from '../flatten';
 import { UserVertex, TweetVertex } from '../__fixtures__/vertices';
 
 describe('#flattenVertices', () => {
-  it('should generate a label for a vertex', () => {
-    const vertex = {
-      name: 'foo'
-    };
+  it('should work', () => {
+    const result = flattenVertices([UserVertex, TweetVertex]);
 
-    expect(flattenVertices([vertex]))
+    expect(result)
       .toEqual({
-        vertexLabels: [
+        "edgeLabels": [
           {
-            name: 'foo'
+            "name": "author",
+            "multiplicity": "ONE2MANY",
+            "directed": true
+          },
+          {
+            "name": "follows",
+            "multiplicity": "MULTI",
+            "directed": true
+          },
+          {
+            "name": "tweeted",
+            "multiplicity": "MANY2ONE",
+            "directed": true
+          },
+          {
+            "name": "follows",
+            "multiplicity": "MULTI",
+            "directed": true
+          },
+          {
+            "name": "tweeted",
+            "multiplicity": "MANY2ONE",
+            "directed": true
+          },
+          {
+            "name": "author",
+            "multiplicity": "ONE2MANY",
+            "directed": true
           }
         ],
-        vertexIndexes: [],
-        propertyKeys: []
+        "edgeIndexes": [
+          {
+            "name": "authorIndex",
+            "unique": false,
+            "composite": true,
+            "indexOnly": false
+          },
+          {
+            "name": "authorIndex",
+            "unique": false,
+            "composite": true,
+            "indexOnly": false
+          }
+        ],
+        "propertyKeys": [
+          {
+            "name": "name",
+            "type": "String",
+            "cardinality": "SINGLE"
+          },
+          {
+            "name": "text",
+            "type": "String",
+            "cardinality": "SINGLE"
+          },
+          {
+            "name": "time",
+            "type": "Date",
+            "cardinality": "SINGLE"
+          }
+        ],
+        "vertexIndexes": [
+          {
+            "propertyKeys": [
+              "name"
+            ],
+            "name": "nameIndex",
+            "unique": false,
+            "composite": true,
+            "indexOnly": false
+          },
+          {
+            "propertyKeys": [
+              "text"
+            ],
+            "name": "textIndex",
+            "unique": false,
+            "composite": true,
+            "indexOnly": false
+          },
+          {
+            "propertyKeys": [
+              "time"
+            ],
+            "name": "timeIndex",
+            "unique": false,
+            "composite": true,
+            "indexOnly": false
+          }
+        ],
+        "vertexLabels": [
+          {
+            "name": "user"
+          },
+          {
+            "name": "tweet"
+          }
+        ]
       });
-  });
-
-  it('should collect property keys and labels for a vertex', () => {
-    console.log(JSON.stringify(flattenVertices([UserVertex]), null, 2));
   });
 });

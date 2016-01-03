@@ -1,7 +1,16 @@
 import invariant from 'invariant';
 
+const checkIndex = (index) => {
+  if (index) {
+    invariant(
+      ['name', 'unique', 'composite'].every((t) => index.hasOwnProperty(t)),
+      'An index requires `name`, `unique`, and `composite` to be specified'
+    );
+  }
+};
+
 // Take in an Edge and return back the Label and any Index specified on it
-const flattenEdge = (edge ) => {
+const flattenEdge = (edge) => {
   const { name, multiplicity, directed, index } = edge;
 
   invariant(
@@ -9,11 +18,7 @@ const flattenEdge = (edge ) => {
     'An edge requires `name`, `multiplicity`, and `directed` to be specified',
   );
 
-  invariant(
-    !index ||
-    ['name', 'unique', 'composite'].every((t) => index.hasOwnProperty(t)),
-    'An index requires `name`, `unique`, and `composite` to be specified'
-  );
+  checkIndex(index);
 
   return [
     { name, multiplicity, directed },
@@ -42,84 +47,66 @@ const flattenEdges = (edges) => edges
     edgeLabels: []
   });
 
-const flattenVertices = (vertices) => vertices
-  .reduce((acc, { name, properties, index }) => {
-    const { vertexLabels, vertexIndexes, propertyKeys } = acc;
+const flattenProperty = (property) => {
+  const { name, type, cardinality, index } = property;
 
+  invariant(
+    ['name', 'type', 'cardinality'].every((t) => property.hasOwnProperty(t)),
+    'A property requires `name`, `type`, and `cardinality` to be specified'
+  );
 
-    if (properties) {
-      const { name, type } = properties;
+  checkIndex(index);
 
-      propertyKeys.push({ name, type });
-    }
+  return [
+    { name, type, cardinality },
+    { propertyKeys: [name], ...index }
+  ];
+};
+
+const flattenProperties = (properties) => properties
+  .map(flattenProperty)
+  .reduce((acc, [propertyKey, index]) => {
+    const { propertyKeys, vertexIndexes } = acc;
 
     return {
-      vertexLabels: vertexLabels.concat({ name }),
-      vertexIndexes,
-      propertyKeys
+      propertyKeys: propertyKeys.concat(propertyKey),
+      vertexIndexes: vertexIndexes.concat(index)
     };
   }, {
-    vertexLabels: [],
-    vertexIndexes: [],
-    propertyKeys: []
+    propertyKeys: [],
+    vertexIndexes: []
   });
 
-// const flattenVertices = (vertices) =>
-  // vertices.reduce((acc, v) => {
-    // const {
-      // edgeIndexes,
-      // edgeLabels,
-      // propertyKeys,
-      // vertexIndexes,
-      // vertexLabels } = acc;
+const flattenVertex = (vertex) => {
+  const { name, properties, inEdges, outEdges } = vertex;
+  const edges = flattenEdges([...inEdges, ...outEdges]);
 
-    // const vertexLabel = v.name;
-    // const edges = [...v.inEdges, ...v.outEdges]
-      // .map(edge)
-      // .reduce((acc, [label, index]) => {
-        // const { edgeIndexes, edgeLabels } = acc;
+  const flattenedProperties = flattenProperties(properties);
 
-        // if (index) {
-          // edgeIndexes.push(index);
-        // }
+  return {
+    vertexLabels: [{ name }],
+    ...flattenedProperties,
+    ...edges
+  };
+};
 
-        // edgeLabels.push(label);
-
-        // return {
-          // edgeIndexes,
-          // edgeLabels
-        // };
-
-      // }, {
-        // edgeIndexes,
-        // edgeLabels
-      // });
-
-    // const vertices = v.properties
-      // .reduce((acc, p) => {
-        // const { vertexIndexes, vertexLabels } = acc;
-
-        // console.log(p);
-
-      // }, {
-        // vertexIndexes,
-        // vertexLabels
-      // });
-
-    // return {
-      // edgeIndexes: edgeIndexes.concat([]),
-      // edgeLabels: edgeLabels.concat([]),
-      // propertyKeys: propertyKeys.concat([]),
-      // vertexIndexes: vertexIndexes.concat([]),
-      // vertexLabels: vertexLabels.concat([])
-    // };
-  // }, {
-    // edgeIndexes: [],
-    // edgeLabels: [],
-    // propertyKeys: [],
-    // vertexIndexes: [],
-    // vertexLabels: []
-  // })
+const flattenVertices = (vertices) => vertices
+  .map(flattenVertex)
+  .reduce((acc, vertex) => ({
+    edgeLabels: acc.edgeLabels.concat(vertex.edgeLabels),
+    edgeIndexes: acc.edgeIndexes.concat(vertex.edgeIndexes),
+    propertyKeys: acc.propertyKeys.concat(vertex.propertyKeys),
+    vertexIndexes: acc.vertexIndexes.concat(vertex.vertexIndexes),
+    vertexLabels: acc.vertexLabels.concat(vertex.vertexLabels)
+  }), {
+    edgeIndexes: [],
+    edgeLabels: [],
+    propertyKeys: [],
+    vertexIndexes: [],
+    vertexLabels: []
+  });
 
 export { flattenEdges };
+export { flattenVertex };
+export { flattenProperties };
 export { flattenVertices };
