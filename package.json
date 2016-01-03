@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src",
-    "test": "f() { EXIT=0; npm run typecheck || EXIT=$?; NODE_ENV=test jest $@ || EXIT=$?; exit $EXIT; }; f",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch",
     "typecheck": "flow check src",
     "update-jest": "rm -rf node_modules/jest-cli/.haste_cache"
   },
