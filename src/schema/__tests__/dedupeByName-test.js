@@ -12,7 +12,7 @@ describe('#dedupeByName', () => {
     expect(result).toEqual([{ name: 'user' }]);
   });
 
-  it('should exclude edge labels with idential names', () => {
+  it('should exclude edge labels with identical names', () => {
     const edge = {
       name: 'author',
       multiplicity: 'ONE2MANY',

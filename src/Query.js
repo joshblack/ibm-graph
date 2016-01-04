@@ -1,30 +1,21 @@
 import request from 'request';
 
+const { NODE_ENV, GDS_API_URL, GDS_USERNAME, GDS_PASSWORD } = process.env;
+
 const Query = (gremlin) => {
   const start = Date.now();
   const payload = {
     json: { gremlin },
     auth: {
-      user: process.env.USER,
-      pass: process.env.PASS
+      user: GDS_USERNAME,
+      pass: GDS_PASSWORD
     }
   };
 
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('Gremlin Query:\n ', gremlin);
-    console.log('Query stats:');
-    console.log('  Start Time:', start);
-  }
-
   return new Promise((resolve, reject) => {
-    request.post(`${process.env.API_URL}/gremlin`, payload, (err, res, body) => {
+    request.post(`${GDS_API_URL}/gremlin`, payload, (err, res, body) => {
       const end = Date.now();
       const duration = end - start;
-
-      if (process.env.NODE_ENV !== 'production') {
-        console.log('  End Time:', end);
-        console.log('  Duration:', duration);
-      }
 
       // Internal error
       if (err) {

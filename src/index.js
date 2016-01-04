@@ -1,33 +1,35 @@
 import invariant from 'invariant';
-import Schema from './Schema';
-import { types } from './types';
-import { cardinality } from './cardinality';
-import { multiplicity } from './multiplicity';
+import Schema from './schema';
+import { dataTypes } from './schema/dataTypes';
+import { cardinality } from './schema/cardinality';
+import { multiplicity } from './schema/multiplicity';
 import { Query, BatchedQuery } from './Query';
 
-const { NODE_ENV, API_URL, USER, PASS } = process.env;
+const { GDS_API_URL, GDS_USERNAME, GDS_PASSWORD } = process.env;
 
 invariant(
-  process.env.API_URL,
-  'No URL specified for the API endpoint. Make sure to include `API_URL` in your env.'
+  GDS_API_URL,
+  'No URL specified for the API endpoint. Make sure to include `GDS_API_URL`' +
+  ' in your env.'
 );
 
 invariant(
-  process.env.USER,
-  'No user information specified for authenticating against the API endpoint. Make sure to include `USER` in your env.'
+  GDS_USERNAME,
+  'No user information specified for authenticating against the API ' +
+  'endpoint. Make sure to include `GDS_USERNAME` in your env.'
 );
 
 invariant(
-  process.env.PASS,
-  'No password specified for authenticating against the API endpoint. Make sure to include `PASS` in your env.'
+  GDS_PASSWORD,
+  'No password specified for authenticating against the API endpoint. Make ' +
+  'sure to include `GDS_PASSWORD` in your env.'
 );
 
 const GraphDataStorePublic = {
-  types,
+  types: dataTypes,
   cardinality,
   multiplicity,
   Query,
-  BatchedQuery,
   Schema
 };
 
