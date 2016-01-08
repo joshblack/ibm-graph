@@ -48,17 +48,17 @@ const flattenEdges = (edges) => edges
   });
 
 const flattenProperty = (property) => {
-  const { name, type, cardinality, index } = property;
+  const { name, dataType, cardinality, index } = property;
 
   invariant(
-    ['name', 'type', 'cardinality'].every((t) => property.hasOwnProperty(t)),
+    ['name', 'dataType', 'cardinality'].every((t) => property.hasOwnProperty(t)),
     'A property requires `name`, `type`, and `cardinality` to be specified'
   );
 
   checkIndex(index);
 
   return [
-    { name, type, cardinality },
+    { name, dataType, cardinality },
     { propertyKeys: [name], ...index }
   ];
 };

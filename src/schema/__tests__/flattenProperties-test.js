@@ -8,7 +8,7 @@ describe('#flattenProperties', () => {
         propertyKeys: [
           {
             name: 'name',
-            type: 'String',
+            dataType: 'String',
             cardinality: 'SINGLE'
           }
         ],
@@ -42,7 +42,7 @@ describe('#flattenProperties', () => {
   it('should handle invalid indexes', () => {
     const result = () => flattenProperties([{
       name: 'foo',
-      type: 'String',
+      dataType: 'String',
       cardinality: 'SINGLE',
       index: {}
     }]);
@@ -53,7 +53,7 @@ describe('#flattenProperties', () => {
   it('should handle missing indexes', () => {
     const result = flattenProperties([{
       name: 'foo',
-      type: 'String',
+      dataType: 'String',
       cardinality: 'SINGLE',
     }]);
 

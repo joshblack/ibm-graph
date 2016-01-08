@@ -14,7 +14,7 @@ const Schema = async ({ auth }) => {
     create: async (schema) => await query({
       uri,
       method: 'POST',
-      json: { ...schema }
+      json: schema
     })
   };
 };

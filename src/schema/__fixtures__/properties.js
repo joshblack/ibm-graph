@@ -3,7 +3,7 @@ import { cardinality as c } from '../cardinality';
 
 export const NameProperty = {
   name: 'name',
-  type: t.String,
+  dataType: t.String,
   cardinality: c.Single,
   index: {
     name: 'nameIndex',
@@ -15,7 +15,7 @@ export const NameProperty = {
 
 export const TextProperty = {
   name: 'text',
-  type: t.String,
+  dataType: t.String,
   cardinality: c.Single,
   index: {
     name: 'textIndex',
@@ -27,7 +27,7 @@ export const TextProperty = {
 
 export const TimeProperty = {
   name: 'time',
-  type: t.Date,
+  dataType: t.Date,
   cardinality: c.Single,
   index: {
     name: 'timeIndex',

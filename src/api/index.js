@@ -19,7 +19,7 @@ async function testRunner() {
     const { get, create } = await APISchema({ auth });
     const result = await create(schema);
 
-    console.log(JSON.stringify(result, null, 2));
+    console.log(result);
   } catch (err) {
     console.log(err);
   }

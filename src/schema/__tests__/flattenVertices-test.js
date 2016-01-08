@@ -56,17 +56,17 @@ describe('#flattenVertices', () => {
         "propertyKeys": [
           {
             "name": "name",
-            "type": "String",
+            "dataType": "String",
             "cardinality": "SINGLE"
           },
           {
             "name": "text",
-            "type": "String",
+            "dataType": "String",
             "cardinality": "SINGLE"
           },
           {
             "name": "time",
-            "type": "Date",
+            "dataType": "Date",
             "cardinality": "SINGLE"
           }
         ],

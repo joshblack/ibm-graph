@@ -28,15 +28,12 @@ const Query = ({
       return;
     }
 
-    console.log('body');
-    console.log(body);
-
-    const response = JSON.parse(body);
-
-    if (response.code) {
-      reject(response);
+    if (body.code) {
+      reject(body.response);
       return;
     }
+
+    const response = JSON.parse(body);
 
     resolve({
       ...response,

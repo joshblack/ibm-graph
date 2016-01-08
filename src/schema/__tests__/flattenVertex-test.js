@@ -20,7 +20,7 @@ describe('#flattenVertex', () => {
         "propertyKeys": [
           {
             "name": "name",
-            "type": "String",
+            "dataType": "String",
             "cardinality": "SINGLE"
           }
         ],
