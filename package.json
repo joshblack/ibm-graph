@@ -15,8 +15,14 @@
   "author": "Josh Black <joshblack@us.ibm.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.4.0",
+    "babel-polyfill": "^6.3.14",
+    "dataloader": "^1.0.0",
     "fbjs": "^0.6.0",
-    "invariant": "^2.2.0"
+    "invariant": "^2.2.0",
+    "isomorphic-fetch": "^2.2.0",
+    "request": "^2.67.0",
+    "winston": "^2.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",

@@ -38,22 +38,4 @@ const Query = (gremlin) => {
   });
 };
 
-const BatchQueries = () => {
-  let queries = [];
-
-  return {
-    add: (query) => queries.push(query),
-    run: () => {
-      const result = Promise.all(queries.map(Query));
-
-      queries = [];
-
-      return result;
-    }
-  };
-};
-
-const BatchedQuery = BatchQueries();
-
 export { Query };
-export { BatchedQuery };
