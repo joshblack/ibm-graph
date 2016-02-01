@@ -24,16 +24,25 @@ async function testRunner() {
   try {
     const { get, create } = await APISchema({ auth, uri: GDS_API_URL });
     // const schema = Schema(UserVertex, TweetVertex);
-    const schema = {
-      edgeIndexes: [
-        {
-          propertyKeys: [
-            'firstEdgeLabel',
-          ],
-          name: 'firstEdgeIndex',
-        }
-      ]
-    };
+    //
+const schema = {
+  edgeIndexes: [
+    {
+      propertyKeys: [
+        'firstEdgePropertyKey'
+      ],
+
+      name: 'firstEdgePropertyIndex',
+
+      // Optional, default false
+      unique: false,
+
+      // Optional, default false
+      composite: true
+    }
+  ]
+};
+
 
     const result = await create(schema);
     // const result = await get();

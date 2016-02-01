@@ -122,4 +122,23 @@ Notes:
 
 ### Creating an Edge Index
 
-This is currently not supported by IBM Graph.
+```js
+const schema = {
+  edgeIndexes: [
+    {
+      propertyKeys: [
+        'firstEdgePropertyKey'
+      ],
+
+      name: 'firstEdgePropertyIndex',
+
+      // Optional, default false
+      unique: false,
+
+      // Optional, default false
+      composite: true
+    }
+  ]
+};
+```
+
