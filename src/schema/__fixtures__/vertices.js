@@ -7,7 +7,6 @@ export const UserVertex = {
     NameProperty
   ],
   inEdges: [
-    AuthorEdge,
     FollowsEdge
   ],
   outEdges: [

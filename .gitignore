@@ -4,3 +4,4 @@ coverage/
 lib/
 npm-debug.log
 resources/connect.sh
+resources/refresh.sh

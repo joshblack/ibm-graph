@@ -4,15 +4,7 @@
  * vertices.
  *
  * See: http://s3.thinkaurelius.com/docs/titan/1.0.0/schema.html
- *
- * @flow
  */
-export type MultiplicityType = 'MULTI'
-  | 'SIMPLE'
-  | 'MANY2ONE'
-  | 'ONE2MANY'
-  | 'ONE2ONE';
-
 const multiplicity = {
 
   /**

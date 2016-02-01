@@ -5,21 +5,6 @@
  *
  * @flow
  */
-export type DataType = 'String'
-  | 'Character'
-  | 'Boolean'
-  | 'Byte'
-  | 'Short'
-  | 'Integer'
-  | 'Long'
-  | 'Double'
-  | 'Decimal'
-  | 'Precision'
-  | 'Date'
-  | 'Geoshape'
-  | 'UUID';
-
-
 const dataTypes = {
 
   /**

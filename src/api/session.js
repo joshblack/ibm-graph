@@ -1,8 +1,8 @@
 import Query from './query';
 import Authorization from './authorization';
 
-const Session = async ({ auth }) => {
-  const { headers } = await Authorization({ auth });
+const Session = async ({ auth, uri }) => {
+  const { headers } = await Authorization({ auth, uri });
   const query = async ({ uri, method, json }) => {
     const result = await Query({ uri, method, json, headers });
 

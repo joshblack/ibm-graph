@@ -1,4 +1,5 @@
 import { multiplicity as m } from '../multiplicity';
+import { FollowedProperty } from './properties';
 
 export const TweetedEdge = {
   name: 'tweeted',
@@ -9,17 +10,14 @@ export const TweetedEdge = {
 export const AuthorEdge = {
   name: 'author',
   multiplicity: m.OneToMany,
-  directed: true,
-  index: {
-    name: 'authorIndex',
-    unique: false,
-    composite: true,
-    indexOnly: false
-  }
+  directed: true
 };
 
 export const FollowsEdge = {
   name: 'follows',
   multiplicity: m.Multi,
-  directed: true
+  directed: true,
+  properties: [
+    FollowedProperty
+  ]
 };

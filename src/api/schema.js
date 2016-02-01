@@ -1,21 +1,39 @@
 import Session from './session';
 
-const { GDS_API_URL } = process.env;
+const Schema = async ({ auth, uri }) => {
+  const { query } = await Session({ auth, uri });
+  const schemaURI = `${uri}/schema`;
 
-const Schema = async ({ auth }) => {
-  const uri = `${GDS_API_URL}/schema`
-  const { query } = await Session({ auth });
+  const get = async () => {
+    try {
+      const { result } = await query({
+        uri: schemaURI,
+        method: 'GET'
+      });
+
+      return result.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const create = async (schema) => {
+    try {
+      const { result } = await query({
+        uri: schemaURI,
+        method: 'POST',
+        json: schema
+      });
+
+      return result.data;
+    } catch (error) {
+      return error;
+    }
+  };
 
   return {
-    get: async () => await query({
-      uri,
-      method: 'GET'
-    }),
-    create: async (schema) => await query({
-      uri,
-      method: 'POST',
-      json: schema
-    })
+    get,
+    create
   };
 };
 

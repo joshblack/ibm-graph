@@ -36,3 +36,15 @@ export const TimeProperty = {
     indexOnly: false
   }
 };
+
+export const FollowedProperty = {
+  name: 'followed',
+  dataType: t.Date,
+  cardinality: c.Single,
+  index: {
+    name: 'followedIndex',
+    unique: false,
+    composite: true,
+    indexOnly: false
+  }
+};

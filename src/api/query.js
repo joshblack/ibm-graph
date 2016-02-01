@@ -14,10 +14,14 @@ const Query = ({
     method,
     auth,
     json,
-    headers
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      ...headers
+    }
   };
 
-  winston.info(options);
+  winston.info(`${Date.now()}`, 'request', JSON.stringify(options, null, 2));
 
   request(options, (error, res, body) => {
     const end = Date.now();
@@ -29,16 +33,18 @@ const Query = ({
     }
 
     if (body.code) {
-      reject(body.response);
+      reject(body);
       return;
     }
 
-    const response = JSON.parse(body);
+    const response = typeof body === 'object' ? body : JSON.parse(body);
 
     resolve({
       ...response,
       duration
     });
+
+    winston.info(`${Date.now()}`, 'response', JSON.stringify(response, null, 2));
   });
 });
 
