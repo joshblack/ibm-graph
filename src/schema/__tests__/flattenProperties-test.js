@@ -3,7 +3,7 @@ import { NameProperty, TextProperty } from '../__fixtures__/properties';
 
 describe('#flattenProperties', () => {
   it('can map a property definition to propertyKeys and vertexIndexes', () => {
-    expect(flattenProperties([NameProperty]))
+    expect(flattenProperties([NameProperty], 'vertexIndexes'))
       .toEqual({
         propertyKeys: [
           {
@@ -19,15 +19,14 @@ describe('#flattenProperties', () => {
             ],
             name: 'nameIndex',
             unique: false,
-            composite: true,
-            indexOnly: false
+            composite: true
           }
         ]
       });
   });
 
   it('should map multiple properties defined on a vertex', () => {
-    const result = flattenProperties([NameProperty, TextProperty]);
+    const result = flattenProperties([NameProperty, TextProperty], 'vertexIndexes');
 
     expect(result.propertyKeys).toExist;
     expect(result.vertexIndexes).toExist;

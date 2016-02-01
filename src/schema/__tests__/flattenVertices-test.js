@@ -9,11 +9,6 @@ describe('#flattenVertices', () => {
       .toEqual({
         "edgeLabels": [
           {
-            "name": "author",
-            "multiplicity": "ONE2MANY",
-            "directed": true
-          },
-          {
             "name": "follows",
             "multiplicity": "MULTI",
             "directed": true
@@ -41,16 +36,20 @@ describe('#flattenVertices', () => {
         ],
         "edgeIndexes": [
           {
-            "name": "authorIndex",
+            "propertyKeys": [
+              "followed"
+            ],
+            "name": "followedIndex",
             "unique": false,
-            "composite": true,
-            "indexOnly": false
+            "composite": true
           },
           {
-            "name": "authorIndex",
+            "propertyKeys": [
+              "followed"
+            ],
+            "name": "followedIndex",
             "unique": false,
-            "composite": true,
-            "indexOnly": false
+            "composite": true
           }
         ],
         "propertyKeys": [
@@ -66,7 +65,7 @@ describe('#flattenVertices', () => {
           },
           {
             "name": "time",
-            "dataType": "Date",
+            "dataType": "Integer",
             "cardinality": "SINGLE"
           }
         ],
@@ -77,8 +76,7 @@ describe('#flattenVertices', () => {
             ],
             "name": "nameIndex",
             "unique": false,
-            "composite": true,
-            "indexOnly": false
+            "composite": true
           },
           {
             "propertyKeys": [
@@ -86,8 +84,7 @@ describe('#flattenVertices', () => {
             ],
             "name": "textIndex",
             "unique": false,
-            "composite": true,
-            "indexOnly": false
+            "composite": true
           },
           {
             "propertyKeys": [
@@ -95,8 +92,7 @@ describe('#flattenVertices', () => {
             ],
             "name": "timeIndex",
             "unique": false,
-            "composite": true,
-            "indexOnly": false
+            "composite": true
           }
         ],
         "vertexLabels": [

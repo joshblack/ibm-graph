@@ -17,38 +17,7 @@ describe('#flattenVertex', () => {
             "name": "user"
           }
         ],
-        "propertyKeys": [
-          {
-            "name": "name",
-            "dataType": "String",
-            "cardinality": "SINGLE"
-          }
-        ],
-        "vertexIndexes": [
-          {
-            "propertyKeys": [
-              "name"
-            ],
-            "name": "nameIndex",
-            "unique": false,
-            "composite": true,
-            "indexOnly": false
-          }
-        ],
-        "edgeIndexes": [
-          {
-            "name": "authorIndex",
-            "unique": false,
-            "composite": true,
-            "indexOnly": false
-          }
-        ],
         "edgeLabels": [
-          {
-            "name": "author",
-            "multiplicity": "ONE2MANY",
-            "directed": true
-          },
           {
             "name": "follows",
             "multiplicity": "MULTI",
@@ -63,6 +32,41 @@ describe('#flattenVertex', () => {
             "name": "follows",
             "multiplicity": "MULTI",
             "directed": true
+          }
+        ],
+        "propertyKeys": [
+          {
+            "name": "name",
+            "dataType": "String",
+            "cardinality": "SINGLE"
+          }
+        ],
+        "edgeIndexes": [
+          {
+            "propertyKeys": [
+              "followed"
+            ],
+            "name": "followedIndex",
+            "unique": false,
+            "composite": true
+          },
+          {
+            "propertyKeys": [
+              "followed"
+            ],
+            "name": "followedIndex",
+            "unique": false,
+            "composite": true
+          }
+        ],
+        "vertexIndexes": [
+          {
+            "propertyKeys": [
+              "name"
+            ],
+            "name": "nameIndex",
+            "unique": false,
+            "composite": true
           }
         ]
       });

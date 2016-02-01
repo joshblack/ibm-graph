@@ -6,10 +6,25 @@ const checkIndex = (index) => {
   }
 
   invariant(
-    ['name', 'unique', 'composite'].every((t) => index.hasOwnProperty(t)),
-    'An index requires `name`, `unique`, and `composite` to be specified. ' +
-    'Instead got: ' + JSON.stringify(index, null, 2)
+    ['name', 'unique', 'composite', 'indexOnly']
+      .every((t) => index.hasOwnProperty(t)),
+    'An index requires `name`, `unique`, `composite`, and `indexOnly to be ' +
+    'specified. Instead got: ' + JSON.stringify(index, null, 2)
   );
+
+  const { indexOnly, ...rest } = index;
+
+  invariant(
+    indexOnly === false || typeof indexOnly === 'string',
+    '`indexOnly` should either be a label specified as a string or should ' +
+    'be set to `false`.'
+  );
+
+  if (!indexOnly) {
+    return rest;
+  }
+
+  return { indexOnly, ...rest };
 };
 
 // Take in an Edge and return back the Label and any Index specified on it
@@ -35,31 +50,32 @@ const flattenProperty = (property) => {
   const { name, dataType, cardinality, index } = property;
 
   invariant(
-    ['name', 'dataType', 'cardinality'].every((t) => property.hasOwnProperty(t)),
-    'A property requires `name`, `dataType`, and `cardinality` to be specified. ' +
-    'Instead got: ' + JSON.stringify(property, null, 2)
+    ['name', 'dataType', 'cardinality']
+      .every((t) => property.hasOwnProperty(t)),
+    'A property requires `name`, `dataType`, and `cardinality` to be ' +
+    'specified. Instead got: ' + JSON.stringify(property, null, 2)
   );
 
-  checkIndex(index);
+  const validatedIndex = checkIndex(index);
 
   return [
     { name, dataType, cardinality },
-    { propertyKeys: [name], ...index }
+    { propertyKeys: [name], ...validatedIndex }
   ];
 };
 
-const flattenProperties = (properties) => properties
+const flattenProperties = (properties, indexType) => properties
   .map(flattenProperty)
   .reduce((acc, [propertyKey, index]) => {
-    const { propertyKeys, vertexIndexes } = acc;
+    const { propertyKeys, [indexType]: prevIndexType } = acc;
 
     return {
       propertyKeys: propertyKeys.concat(propertyKey),
-      vertexIndexes: vertexIndexes.concat(index)
+      [indexType]: prevIndexType.concat(index),
     };
   }, {
     propertyKeys: [],
-    vertexIndexes: []
+    [indexType]: []
   });
 
 const flattenVertex = (vertex) => {
@@ -76,14 +92,13 @@ const flattenVertex = (vertex) => {
     .map((e) => e.properties)
     .reduce((acc, p) => acc.concat(p), []);
 
-  const properties = flattenProperties([
-    ...edgeProperties,
-    ...vertexProperties
-  ]);
+  const properties = {
+    ...flattenProperties(edgeProperties, 'edgeIndexes'),
+    ...flattenProperties(vertexProperties, 'vertexIndexes')
+  };
 
   const edges = flattenEdges(allEdges);
 
-  console.log(JSON.stringify(properties, null, 2));
   return {
     vertexLabels: [{ name }],
     edgeLabels: edges,

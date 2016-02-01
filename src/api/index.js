@@ -23,28 +23,13 @@ async function testRunner() {
 
   try {
     const { get, create } = await APISchema({ auth, uri: GDS_API_URL });
+    const { propertyKeys, edgeLabels, vertexLabels, vertexIndexes, edgeIndexes } = Schema(UserVertex, TweetVertex);
+
     // const schema = Schema(UserVertex, TweetVertex);
-    //
-const schema = {
-  edgeIndexes: [
-    {
-      propertyKeys: [
-        'firstEdgePropertyKey'
-      ],
-
-      name: 'firstEdgePropertyIndex',
-
-      // Optional, default false
-      unique: false,
-
-      // Optional, default false
-      composite: true
-    }
-  ]
-};
+    // console.log(JSON.stringify(schema, null, 2));
 
 
-    const result = await create(schema);
+    const result = await create({ edgeIndexes });
     // const result = await get();
 
     console.log(JSON.stringify(result, null, 2));
@@ -56,4 +41,16 @@ const schema = {
 testRunner()
   .then(() => {})
   .catch((err) => console.log(err));
+
+import Auth from './Auth';
+import Query from './Query';
+import Schema from './Schema';
+import Session from './Session';
+
+export {
+  Auth,
+  Query,
+  Schema,
+  Session
+};
 

@@ -27,7 +27,7 @@ export const TextProperty = {
 
 export const TimeProperty = {
   name: 'time',
-  dataType: t.Date,
+  dataType: t.Integer,
   cardinality: c.Single,
   index: {
     name: 'timeIndex',
@@ -39,7 +39,7 @@ export const TimeProperty = {
 
 export const FollowedProperty = {
   name: 'followed',
-  dataType: t.Date,
+  dataType: t.Integer,
   cardinality: c.Single,
   index: {
     name: 'followedIndex',

@@ -4,12 +4,7 @@
  * on any given vertex.
  *
  * See: http://s3.thinkaurelius.com/docs/titan/1.0.0/schema.html
- *
- * @flow
  */
-export type CardinalityType = 'SINGLE'
-  | 'LIST'
-  | 'SET';
 
 const cardinality = {
 

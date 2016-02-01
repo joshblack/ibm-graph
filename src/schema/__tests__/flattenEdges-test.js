@@ -25,37 +25,24 @@ describe('#flattenEdges', () => {
 
   it('should take in an edge and extract its label', () => {
     expect(flattenEdges([TweetedEdge]))
-      .toEqual({
-        edgeIndexes: [],
-        edgeLabels: [
-          {
-            name: 'tweeted',
-            multiplicity: 'MANY2ONE',
-            directed: true
-          }
-        ]
-      });
+    .toEqual([
+      {
+        directed: true,
+        multiplicity: 'MANY2ONE',
+        name: 'tweeted'
+      }
+    ]);
   });
 
   it('should take in an edge and extract its indexes and label', () => {
     expect(flattenEdges([FollowsEdge]))
-      .toEqual({
-        edgeIndexes: [
-          {
-            name: 'follwedIndex',
-            unique: false,
-            composite: true,
-            indexOnly: false
-          }
-        ],
-        edgeLabels: [
-          {
-            name: 'follows',
-            multiplicity: 'Multi',
-            directed: true
-          }
-        ]
-      });
+    .toEqual([
+      {
+        directed: true,
+        multiplicity: 'MULTI',
+        name: 'follows'
+      }
+    ]);
   });
 
   // it('should extract indexes and labels from multiple input edges', () => {
