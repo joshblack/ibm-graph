@@ -1,5 +1,5 @@
 #!/bin/bash -e
-export RELEASE=0.0.1
+export RELEASE=1
 
 if ! [ -e resources/release.sh ]; then
   echo >&2 "Please run resources/release.sh from the repo root"
@@ -42,7 +42,7 @@ git tag latest -f
 git push origin $next_ref
 git push origin latest -f
 
-node scripts/build.js
+npm run build
 
 npm publish
 
