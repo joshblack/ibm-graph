@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/joshblack/cds-graph.svg?branch=master)](https://travis-ci.org/joshblack/ibm-graph)
+[![Build Status](https://travis-ci.org/joshblack/ibm-graph.svg?branch=master)](https://travis-ci.org/joshblack/ibm-graph)
 
 This repo holds an implementation of various modules used for JavaScript development with IBM Graph. Namely, this repo includes a way to define a Schema, and Query the Graph Data Store service. In addition, this module exposes:
 
