@@ -1,7 +1,7 @@
 {
   "name": "ibm-graph",
   "version": "0.0.1",
-  "description": "",
+  "description": "JavaScript module for interacting with the IBM Graph service.",
   "main": "lib/index.js",
   "scripts": {
     "build": "rimraf lib && babel ./src -d lib --ignore '__tests__'",
@@ -12,6 +12,14 @@
   },
   "author": "Josh Black <joshblack@us.ibm.com>",
   "license": "MIT",
+  "homepage": "https://github.com/joshblack/ibm-graph",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshblack/ibm-graph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joshblack/ibm-graph/issues"
+  },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "invariant": "^2.2.0",
