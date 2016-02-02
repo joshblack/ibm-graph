@@ -2,6 +2,8 @@
 
 The `API` module exposes a variety of modules for interacting with the service, from authentication and session management to creating/retrieving a Schema. The intent is to also to provide first-class support for Vertices and Edges in the near future.
 
+Make sure to check out the [examples](./examples.md)!
+
 ### Query
 
 `Query` is a simple abstraction to communicate with the IBM Graph service. It rquires the following:
