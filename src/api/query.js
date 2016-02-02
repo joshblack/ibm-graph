@@ -1,6 +1,22 @@
 import request from 'request';
 import winston from 'winston';
 
+/**
+ * Query interface for executing a request against the IBM Graph Service.
+ *
+ * Generic wrapper over request that handles for error checking nuances when
+ * communicating with IBM Graph, also provides some context with `winston` and
+ * provides meta information like the duration of the query to help out with
+ * performance.
+ *
+ * @param {Object} params
+ * @param {String} params.uri  - The uri to send the request to
+ * @param {String} params.method - The HTTP method for sending the request
+ * @param {Object} params.auth - An auth object containing user/pass creds.
+ * @param {Object} params.json - Pass in an arbitrary payload in the request
+ * @param {Object} params.headers  - Pass in headers for things like sessions
+ * @returns {Object}
+ */
 const Query = ({
   uri,
   method,

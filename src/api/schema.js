@@ -1,6 +1,10 @@
 import invariant from 'invariant';
 import Session from './Session';
 
+/**
+ * Given a schema and set of indices, check to make sure that every property
+ * key on the indices exist in the given schema.
+ */
 const checkForPropertyKey = (schema, indices) => {
   const { propertyKeys: schemaPropertyKeys } = schema;
   const currentPropertyKeys = schemaPropertyKeys.map(({ name }) => name);
@@ -26,6 +30,15 @@ const checkForPropertyKey = (schema, indices) => {
   );
 };
 
+/**
+ * Schema abstraction over the Schema REST endpoint. Allows you to create and
+ * retrieve a schema.
+ *
+ * @param {Object} params
+ * @param {Object} params.auth - Auth object used to create the Session
+ * @param {String} params.uri - URI string for the service
+ * @returns {Object}
+ */
 const Schema = async ({ auth, uri }) => {
   const { query } = await Session({ auth, uri });
   const schemaURI = `${uri}/schema`;
@@ -74,3 +87,4 @@ const Schema = async ({ auth, uri }) => {
 };
 
 export default Schema;
+
