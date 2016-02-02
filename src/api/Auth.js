@@ -1,6 +1,6 @@
-import Query from './query';
+import Query from './Query';
 
-const Authorization = async ({ auth, uri }) => {
+const Auth = async ({ auth, uri }) => {
   const options = {
     uri: `${uri.slice(0, uri.length - 2)}/_session`,
     method: 'GET',
@@ -19,4 +19,5 @@ const Authorization = async ({ auth, uri }) => {
   }
 };
 
-export default Authorization;
+export default Auth;
+

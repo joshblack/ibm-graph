@@ -1,5 +1,5 @@
-import { dataTypes as t } from '../dataTypes';
-import { cardinality as c } from '../cardinality';
+import { dataTypes as t } from '../../schema/dataTypes';
+import { cardinality as c } from '../../schema/cardinality';
 
 export const NameProperty = {
   name: 'name',

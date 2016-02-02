@@ -1,5 +1,5 @@
 import invariant from 'invariant';
-import Session from './session';
+import Session from './Session';
 
 const checkForPropertyKey = (schema, indices) => {
   const { propertyKeys: schemaPropertyKeys } = schema;

@@ -41,3 +41,4 @@ const cardinality = {
 };
 
 export { cardinality };
+

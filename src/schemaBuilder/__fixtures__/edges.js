@@ -1,4 +1,4 @@
-import { multiplicity as m } from '../multiplicity';
+import { multiplicity as m } from '../../schema/multiplicity';
 import { FollowedProperty } from './properties';
 
 export const TweetedEdge = {

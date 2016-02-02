@@ -37,3 +37,4 @@ const dataTypes = {
 };
 
 export { dataTypes };
+

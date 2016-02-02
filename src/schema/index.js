@@ -1,11 +1,10 @@
-import { flattenVertices } from './flatten';
-import { dedupeStrategy } from './dedupe';
+import { dataTypes } from './dataTypes';
+import { cardinality } from './cardinality';
+import { multiplicity } from './multiplicity';
 
-export default function Schema(...vertices) {
-  const flattened = flattenVertices(vertices);
+export {
+  dataTypes,
+  cardinality,
+  multiplicity
+};
 
-  return Object.keys(flattened).reduce((acc, key) => ({
-    ...acc,
-    [key]: dedupeStrategy[key](flattened[key])
-  }), {});
-}

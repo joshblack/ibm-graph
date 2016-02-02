@@ -126,3 +126,4 @@ export { flattenEdges };
 export { flattenVertex };
 export { flattenProperties };
 export { flattenVertices };
+
