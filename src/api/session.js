@@ -11,10 +11,10 @@ import Query from './Query';
  * @param {String} params.uri - The URI string for the service
  * @returns {Object}
  */
-const Session = async ({ auth, uri }) => {
+const Session = async ({ auth, uri, debug }) => {
   const { headers } = await Auth({ auth, uri });
   const query = async ({ uri, method, json }) => {
-    const result = await Query({ uri, method, json, headers });
+    const result = await Query({ uri, method, json, headers, debug });
 
     return result;
   };

@@ -21,6 +21,7 @@ const Auth = async ({ auth, uri }) => {
 
   try {
     const { 'gds-token': token } = await Query(options);
+
     const headers = {
       Authorization: `gds-token ${token}`
     };

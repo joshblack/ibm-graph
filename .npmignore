@@ -1,5 +1,6 @@
 .DS_Store
 node_modules/
+integration/
 coverage/
 npm-debug.log
 resources/connect.sh
