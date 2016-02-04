@@ -11,6 +11,7 @@ Make sure to check out the [examples](./examples.md)!
 - `Schema`: used for getting and creating schemas
 - `Session`: handles the flow of creating a token for you, giving you a query to work with for persistent sessions
 - `Gremlin`: used for executing Gremlin queries against the service
+- [`Load`](./Load.md): used for loading GraphSON or GraphML documents to your database
 
 ### Query
 

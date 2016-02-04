@@ -23,6 +23,7 @@ const Query = ({
   auth,
   body,
   headers,
+  formData,
   debug = false
 }) => new Promise((resolve, reject) => {
   const start = Date.now();
@@ -37,6 +38,10 @@ const Query = ({
       ...headers
     }
   };
+
+  if (formData) {
+    options.formData = formData;
+  }
 
   if (debug) {
     winston.info(`${Date.now()}`, 'request', JSON.stringify(options, null, 2));
