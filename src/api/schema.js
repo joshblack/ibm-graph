@@ -39,8 +39,8 @@ const checkForPropertyKey = (schema, indices) => {
  * @param {String} params.uri - URI string for the service
  * @returns {Object}
  */
-const Schema = async ({ auth, uri }) => {
-  const { query } = await Session({ auth, uri });
+const Schema = async ({ auth, uri, debug }) => {
+  const { query } = await Session({ auth, uri, debug });
   const schemaURI = `${uri}/schema`;
 
   const get = async () => {

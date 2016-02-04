@@ -22,7 +22,8 @@ const Query = ({
   method,
   auth,
   json,
-  headers
+  headers,
+  debug = false
 }) => new Promise((resolve, reject) => {
   const start = Date.now();
   const options = {
@@ -37,7 +38,9 @@ const Query = ({
     }
   };
 
-  winston.info(`${Date.now()}`, 'request', JSON.stringify(options, null, 2));
+  if (debug) {
+    winston.info(`${Date.now()}`, 'request', JSON.stringify(options, null, 2));
+  }
 
   request(options, (error, res, body) => {
     const end = Date.now();
@@ -48,19 +51,21 @@ const Query = ({
       return;
     }
 
-    if (body.code) {
-      reject(body);
+    const response = typeof body === 'object' ? body : JSON.parse(body);
+
+    if (response.code) {
+      reject(response);
       return;
     }
-
-    const response = typeof body === 'object' ? body : JSON.parse(body);
 
     resolve({
       ...response,
       duration
     });
 
-    winston.info(`${Date.now()}`, 'response', JSON.stringify(response, null, 2));
+    if (debug) {
+      winston.info(`${Date.now()}`, 'response', JSON.stringify(response, null, 2));
+    }
   });
 });
 
