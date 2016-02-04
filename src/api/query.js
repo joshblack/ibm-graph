@@ -21,7 +21,7 @@ const Query = ({
   uri,
   method,
   auth,
-  json,
+  body,
   headers,
   debug = false
 }) => new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ const Query = ({
     uri,
     method,
     auth,
-    json,
+    json: body,
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -51,7 +51,20 @@ const Query = ({
       return;
     }
 
-    const response = typeof body === 'object' ? body : JSON.parse(body);
+    /**
+     * We have to wrap parsing our response in a try/catch because the service
+     * may throw unexpected string errors like:
+     *
+     * 502 Bad Gateway: ...
+     */
+    let response;
+
+    try {
+      response = typeof body === 'object' ? body : JSON.parse(body);
+    } catch (e) {
+      reject(body);
+      return;
+    }
 
     if (response.code) {
       reject(response);

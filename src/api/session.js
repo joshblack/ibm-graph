@@ -12,9 +12,10 @@ import Query from './Query';
  * @returns {Object}
  */
 const Session = async ({ auth, uri, debug }) => {
-  const { headers } = await Auth({ auth, uri });
-  const query = async ({ uri, method, json }) => {
-    const result = await Query({ uri, method, json, headers, debug });
+  const { headers } = await Auth({ auth, uri, debug });
+
+  const query = async ({ uri, method, body }) => {
+    const result = await Query({ uri, method, body, headers, debug });
 
     return result;
   };
