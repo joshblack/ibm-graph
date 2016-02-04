@@ -1,3 +1,4 @@
+import invariant from 'invariant';
 import Query from './Query';
 
 /**
@@ -12,10 +13,18 @@ import Query from './Query';
  * @param {String} params.uri - String for the URI of the Service
  * @returns {Object}
  */
-const Auth = async ({ auth, uri }) => {
+const Auth = async ({ auth, uri, debug }) => {
+  invariant(
+    uri,
+    'A valid URI needs to be supplied for the Authentication modules to ' +
+    'work. Expected a string representing the instance URL, instead got %s.',
+    uri
+  );
+
   const options = {
     uri: `${uri.slice(0, uri.length - 2)}/_session`,
     method: 'GET',
+    debug,
     auth
   };
 

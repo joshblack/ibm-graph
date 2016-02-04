@@ -4,6 +4,14 @@ The `API` module exposes a variety of modules for interacting with the service, 
 
 Make sure to check out the [examples](./examples.md)!
 
+## Modules
+
+- `Auth`: used to retrieve the `gds-token`
+- `Query`: primitive for querying
+- `Schema`: used for getting and creating schemas
+- `Session`: handles the flow of creating a token for you, giving you a query to work with for persistent sessions
+- `Gremlin`: used for executing Gremlin queries against the service
+
 ### Query
 
 `Query` is a simple abstraction to communicate with the IBM Graph service. It rquires the following:
