@@ -56,11 +56,18 @@ const flattenProperty = (property) => {
     'specified. Instead got: ' + JSON.stringify(property, null, 2)
   );
 
-  const validatedIndex = checkIndex(index);
+  let validatedIndex;
+
+  if (index) {
+    validatedIndex = {
+      propertyKeys: [name],
+      ...checkIndex(index)
+    };
+  }
 
   return [
     { name, dataType, cardinality },
-    { propertyKeys: [name], ...validatedIndex }
+    validatedIndex
   ];
 };
 
@@ -68,10 +75,13 @@ const flattenProperties = (properties, indexType) => properties
   .map(flattenProperty)
   .reduce((acc, [propertyKey, index]) => {
     const { propertyKeys, [indexType]: prevIndexType } = acc;
+    const nextIndex = index
+      ? prevIndexType.concat(index)
+      : prevIndexType;
 
     return {
       propertyKeys: propertyKeys.concat(propertyKey),
-      [indexType]: prevIndexType.concat(index),
+      [indexType]: nextIndex,
     };
   }, {
     propertyKeys: [],

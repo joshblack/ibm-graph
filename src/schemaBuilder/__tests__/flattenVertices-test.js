@@ -85,14 +85,6 @@ describe('#flattenVertices', () => {
             "name": "textIndex",
             "unique": false,
             "composite": true
-          },
-          {
-            "propertyKeys": [
-              "time"
-            ],
-            "name": "timeIndex",
-            "unique": false,
-            "composite": true
           }
         ],
         "vertexLabels": [

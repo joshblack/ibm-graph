@@ -28,13 +28,7 @@ export const TextProperty = {
 export const TimeProperty = {
   name: 'time',
   dataType: t.Integer,
-  cardinality: c.Single,
-  index: {
-    name: 'timeIndex',
-    unique: false,
-    composite: true,
-    indexOnly: false
-  }
+  cardinality: c.Single
 };
 
 export const FollowedProperty = {
