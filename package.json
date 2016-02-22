@@ -1,6 +1,6 @@
 {
   "name": "ibm-graph",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "JavaScript module for interacting with the IBM Graph service.",
   "main": "lib/index.js",
   "scripts": {
